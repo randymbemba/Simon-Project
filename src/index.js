@@ -1,27 +1,28 @@
 import "./styles/styles.css";
+import * as Tone from 'tone'
 
-let btn;
+let btn = {
+    rouge: null,
+    bleu: null,
+    vert: null,
+    jaune: null
+};
 
 function init(){
-    btn = document.querySelector('.boutons');
+    btn.rouge = document.getElementById('rouge');
 
-    btn.addEventListener('click',() =>{
+    btn.rouge.addEventListener('click',() =>{
         sound();
     });
 
     function sound(){
-        var context = new AudioContext();
-        var o = context.createOscillator();
-        var  g = context.createGain();
-        g.gain.value = 0.1;
-        o.connect(g)
-        o.connect(context.destination);
-        o.start(0);
-
-        g.gain.exponentialRampToValueAtTime(
-            0.00001, context.currentTime + 2
-        )
-    };
+        const synth = new Tone.Synth().toDestination();
+        const now = Tone.now()
+        synth.triggerAttackRelease("C4", "8n", now)
+        synth.triggerAttackRelease("E4", "8n", now + 0.5)
+        synth.triggerAttackRelease("G4", "8n", now + 1)
+        synth.triggerAttackRelease("F4", "8n", now + 1.5)
+    }
     sound();
 }
 
