@@ -1,0 +1,27 @@
+body{
+    background-color: antiquewhite;
+}
+
+h1{
+    text-align: center;
+}
+
+.btn-primary{
+    align-items: center;
+}
+
+.start{
+    background-color: blue;
+    border-radius: 10px;
+    color: #eeeeee;
+    font-size: 15px;
+    padding: 20px;
+    width: 90px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+
+}
+.start:hover {
+    background-color: #487bc7;
+}
