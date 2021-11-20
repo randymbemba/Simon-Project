@@ -9,12 +9,13 @@ let btn = {
 };
 
 function init(){
-    btn.rouge = document.getElementById('rouge');
-
-    btn.rouge.addEventListener('click',() =>{
-        sound();
-    });
-
+        let array1 = document.querySelectorAll(".boutons");
+        array1.forEach(element =>  {
+            element.addEventListener("click",() =>{
+                sound();
+            })
+        });
+        
     function sound(){
         const synth = new Tone.Synth().toDestination();
         const now = Tone.now()
