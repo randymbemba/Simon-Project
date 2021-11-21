@@ -10,8 +10,8 @@ h1{
     align-items: center;
 }
 
-.start{
-    background-color: blue;
+#jouer{
+    background-color: #09000a;
     border-radius: 10px;
     color: #eeeeee;
     font-size: 15px;
@@ -22,7 +22,40 @@ h1{
     margin: 5px;
 
 }
-.start:hover {
-    background-color: #487bc7;
+#jouer:hover {
+    background-color: #757575;
 }
 
+.bouton_play{
+    transition-duration: .2s;
+    transition-property: opacity;
+    transition-timing-function: ease-in-out;
+}
+
+.bouton_play:hover{
+    opacity: .2;
+}
+
+#rouge{
+
+    background-color: red;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+
+}#bleu{
+    background-color: #2121ce;
+     border-radius: 10px;
+     width: 150px;
+    height: 150px;
+}#vert{
+    background-color: #1fd21f;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+}#jaune{
+    background-color: #fafa03;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+}
