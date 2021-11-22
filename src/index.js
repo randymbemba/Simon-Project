@@ -2,38 +2,24 @@ import "./styles/styles.css";
 import * as Tone from 'tone'
 
 let btn = {
-    rouge: null,
-    bleu: null,
-    vert: null,
-    jaune: null
+    start: null,
+    game: null,
+    fin: null
 };
 
-let intervalFunction;
 
 let couleur = ['rouge','bleu','vert','jaune'];
 let nombre = 3
 let game = [];
 
-const colorQueue = [];
+let gameColor = [];
 
 
 function init(){
     let array1 = document.querySelectorAll(".boutons");
     array1.forEach(element =>  {
         element.addEventListener("click",() =>{
-            if (element.id === "jouer"){
-                for (let i = 0; i<nombre;i++){
-                    let pos = Math.round(Math.random() * (couleur.length - 1))
-                    game.push(couleur[pos])
-                }
-                let position = 0
-                intervalFunction = setInterval(
-                    () =>{
-                        const selectPosition = game[position]
-
-                    },1000
-                )
-            }else if (element.id === "rouge"){
+            if (element.id === "rouge"){
                 const synth = new Tone.Synth().toDestination();
                 const now = Tone.now()
                 synth.triggerAttackRelease("C4", "8n", now)
@@ -52,38 +38,68 @@ function init(){
                 const now = Tone.now()
                 synth.triggerAttackRelease("F4", "8n", now )
             }
+
         })
 
     });
 
-    const addColor = () => {
-        colorQueue.push(pos)
-    }
 }
 
+
+
 function debut () {
+    btn.game = document.querySelector('.game');
+    btn.fin = document.querySelector('.fin');
+    btn.start = document.querySelector('.form');
+
     let arra = document.querySelectorAll(".boutons");
     arra.forEach(element =>  {
         element.addEventListener("click",() =>{
             if (element.id === "jouer"){
-                for (let i = 0; i < nombre; i++) {
-                    const pos = Math.round(Math.random() * (couleur.length - 1))
-                    game.push(couleur[pos])
-                }
-                console.log(game);
-                /* let position = 0
-                 intervalFunction = setInterval(
-                     () => {
-                         const selectPosition = game[position]
+                randomColor();
+                play();
 
-                     }, 1000
-                 )*/
+                btn.game.style.display = 'block';
+                btn.start.style.display = 'none';
+
+
+                console.log(game);
             }else {
 
             }
         })
- })
+    })
 }
+
+const randomColor = () =>{
+    for (let i = 0; i < nombre; i++) {
+        const pos = Math.round(Math.random() * (couleur.length - 1))
+        game.push(couleur[pos])
+    }
+
+}
+
+const sound = () => {
+    
+    const synth = new Tone.Synth().toDestination();
+    const now = Tone.now()
+    synth.triggerAttackRelease("C4", "8n", now)
+
+}
+
+
+const play = (delay = 0) => {
+    setTimeout(() =>{
+        const selectElement = document.querySelector(".bouton_play")
+        selectElement.classList.add('hover')
+        setTimeout(()=>{
+            selectElement.classList.remove('hover')
+        },500);
+    }, delay)
+}
+
+
+
 debut();
 
 window.onload = init;
